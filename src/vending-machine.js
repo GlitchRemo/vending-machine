@@ -2,18 +2,18 @@ const determineNumberOfCoins = function(amount, denomination) {
   return Math.floor(amount / denomination);
 }
 
-const determineOptimumNumberOfCoins = function(rupees) {
-  const denominations = [10, 5, 2, 1]
+const dispenseCoins = function(rupees, denominations) {
+  const requiredDenominations = denominations.reverse();
 
   let amount = rupees;
   let coins = 0;
-  for(let currentDenominations of denominations) {
+  for(let currentDenomination of requiredDenominations) {
 
-    coins = coins + determineNumberOfCoins(amount, currentDenominations);
-    amount = amount % currentDenominations;
+    coins = coins + determineNumberOfCoins(amount, currentDenomination);
+    amount = amount % currentDenomination;
   }
 
   return coins;
 }
 
-exports.determineOptimumNumberOfCoins = determineOptimumNumberOfCoins;
+exports.dispenseCoins = dispenseCoins;
