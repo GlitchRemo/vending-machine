@@ -1,5 +1,5 @@
-const dummy = function() {
-  return 1;
+const determineCoins = function(rupees) {
+  return rupees;
 }
 
-exports.dummy = dummy;
+exports.determineCoins = determineCoins;
