@@ -1,5 +1,5 @@
-const determineCoins = function(rupees) {
-  return rupees;
+const determineOptimumNumberOfCoins = function(amount) {
+  return Math.floor(amount / 2) + amount % 2;
 }
 
-exports.determineCoins = determineCoins;
+exports.determineOptimumNumberOfCoins = determineOptimumNumberOfCoins;
