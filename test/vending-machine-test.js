@@ -1,9 +1,12 @@
 const testing = require("../lib/testing.js");
 const vendingMachine = require("../src/vending-machine.js");
 const assert = testing.assert;
+const assertArrayEqual = testing.assertArrayEqual;
 const dispenseCoins = vendingMachine.dispenseCoins;
+const maxSort = vendingMachine.maxSort;
+const max = vendingMachine.max;
 
-const runTest = function(){
+const runTestForDispenseCoins = function(){
   assert(0,dispenseCoins(0,[1]),"zero coin equals to zero rupee");
   assert(1,dispenseCoins(1,[1]),"one coin of Re.1 equals to one rupee");
   assert(2,dispenseCoins(3,[1,2]),"one coin of Re.1 and one coin of Rs.2 equals to three rupees");
@@ -16,7 +19,21 @@ const runTest = function(){
   assert(1,dispenseCoins(14,[13]),"if only 13 is our denomination , for an amount of Rs.14 I will get one coin");
   assert(0,dispenseCoins(12,[13]),"if only 13 is our denomination , for an amount of Rs.12 I will get no coin");
   assert(4,dispenseCoins(13,[1,4,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
+  assert(4,dispenseCoins(13,[4,1,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
+  assert(6,dispenseCoins(23,[2,1,5]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
 }
 
-runTest();
+const runTestForMaxSort = function() {
+  assertArrayEqual([2,1],maxSort([1,2]),"sorted order of 1,2 is 2,1");
+  assertArrayEqual([4,2,1],maxSort([4,1,2]),"sorted order of 4,1,2 is 1,2,4");
+}
+
+const runTestForMax = function() {
+  assert(3,max([1,2,3]), "max of 1,2,3 is 3");
+  assert(2,max([1,2]), "max of 1,2 is 2");
+}
+
+runTestForDispenseCoins();
+runTestForMaxSort();
+runTestForMax();
 testing.showTestSummary();
