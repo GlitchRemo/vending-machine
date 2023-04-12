@@ -15,6 +15,7 @@ const runTest = function(){
   assert(6,dispenseCoins(21,[1,4]),"five coins of Rs.4 and one coin of Re.1 equals to twenty one rupees");
   assert(1,dispenseCoins(14,[13]),"if only 13 is our denomination , for an amount of Rs.14 I will get one coin");
   assert(0,dispenseCoins(12,[13]),"if only 13 is our denomination , for an amount of Rs.12 I will get no coin");
+  assert(4,dispenseCoins(13,[1,4,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
 }
 
 runTest();

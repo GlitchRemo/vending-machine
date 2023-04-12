@@ -3,11 +3,11 @@ const determineNumberOfCoins = function(amount, denomination) {
 }
 
 const dispenseCoins = function(rupees, denominations) {
-  const requiredDenominations = denominations.reverse();
+  const denominationsInDescOrder = denominations.reverse();
 
   let amount = rupees;
   let coins = 0;
-  for(let currentDenomination of requiredDenominations) {
+  for(let currentDenomination of denominationsInDescOrder) {
 
     coins = coins + determineNumberOfCoins(amount, currentDenomination);
     amount = amount % currentDenomination;
