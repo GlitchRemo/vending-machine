@@ -44,7 +44,22 @@ const dispenseCoins = function(rupees, denominations) {
   return coins;
 }
 
+const dispenseCoinsByDenominations = function(rupees, denominations) {
+  const denominationsInDescOrder = maxSort(denominations.slice());
+  const denominationsObj = {};
+
+  let amount = rupees;
+  for(let currentDenomination of denominationsInDescOrder) {
+
+    denominationsObj[currentDenomination] = determineNumberOfCoins(amount, currentDenomination);
+    amount = amount % currentDenomination;
+  }
+
+  return denominationsObj;
+}
+
 exports.remove = remove;
 exports.maxSort = maxSort;
 exports.max = max;
 exports.dispenseCoins = dispenseCoins;
+exports.dispenseCoinsByDenominations = dispenseCoinsByDenominations;

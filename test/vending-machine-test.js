@@ -7,6 +7,7 @@ const dispenseCoins = vendingMachine.dispenseCoins;
 const maxSort = vendingMachine.maxSort;
 const max = vendingMachine.max;
 const remove = vendingMachine.remove;
+const dispenseCoinsByDenominations = vendingMachine.dispenseCoinsByDenominations;
 
 const runTestForDispenseCoins = function(){
   printHeadline("runTestForDispenseCoins()");
@@ -24,6 +25,13 @@ const runTestForDispenseCoins = function(){
   assert(4,dispenseCoins(13,[1,4,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
   assert(4,dispenseCoins(13,[4,1,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
   assert(6,dispenseCoins(23,[2,1,5]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
+}
+
+const runTestForDispenseCoinsByDenominations = function() {
+  printHeadline("runTestForDispenseCoinsByDenominations()");
+  assert({2:1,1:1},dispenseCoinsByDenominations(3,[1,2]),"one coin of Re.1 and one coin of Rs.2 equals to three rupees");
+  assert({7:1,4:1,1:2},dispenseCoinsByDenominations(13,[1,4,7]),"one coin of Rs.7 , one coin of Rs.4 and two coins of Re.1 is equal to thirteen rupees");
+  assert({10:2,1:1},dispenseCoinsByDenominations(21,[1,2,5,10]),"two coins of Rs.10 and one coin of Re.1 equals to twenty one rupees");
 }
 
 const runTestForMaxSort = function() {
@@ -46,6 +54,7 @@ const runTestForRemove = function() {
 
 const runTestForDriver = function() {
   runTestForDispenseCoins();
+  runTestForDispenseCoinsByDenominations();
 }
 
 const runTestForHelper = function() {
