@@ -43,7 +43,7 @@ const dispenseCoins = function(rupees, denominations) {
   const coinsList = Object.values(coinsByDenomination);
   let coins = 0;
 
-  for(coin of coinsList) {
+  for(let coin of coinsList) {
     coins += coin;
   }
 

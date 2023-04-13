@@ -2,7 +2,9 @@ const testing = require("../lib/testing.js");
 const vendingMachine = require("../src/vending-machine.js");
 const assert = testing.assert;
 const assertArrayEqual = testing.assertArrayEqual;
+const assertObjectEqual = testing.assertObjectEqual;
 const printHeadline = testing.printHeadline;
+
 const dispenseCoins = vendingMachine.dispenseCoins;
 const maxSort = vendingMachine.maxSort;
 const max = vendingMachine.max;
@@ -33,8 +35,8 @@ const runTestForDispenseCoins = function(){
 
 const runTestForDispenseCoinsByDenominations = function() {
   printHeadline("runTestForDispenseCoinsByDenominations()");
-  assert({2:1, 1:1}[2],dispenseCoinsByDenominations(3,[1,2])[2],"1 coin of Re.1 and 1 coin of Rs.2 equals to three rupees");
-  assert({2:1, 1:1}[1],dispenseCoinsByDenominations(3,[1,2])[1],"1 coin of Re.1 and 1 coin of Rs.2 equals to three rupees");
+  assertObjectEqual({2:1, 1:1},dispenseCoinsByDenominations(3,[1,2]),"1 coin of Re.1 and 1 coin of Rs.2 equals to Rs.13");
+  assertObjectEqual({7:1, 4:1, 1:2},dispenseCoinsByDenominations(13,[1,4,7]),"1 coin of Rs.7, 1 of Rs.4, 2 of Re.1 is equal to Rs. 13");
 }
 
 const runTestForMaxSort = function() {
