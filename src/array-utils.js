@@ -1,3 +1,11 @@
+const sigma = function(numbers) {
+  let sum = 0;
+  for(const n of numbers) {
+    sum = sum + n;
+  }
+  return sum;
+}
+
 const getMaxEntry = function(numbers) {
   if(numbers.length === 0) return {index: undefined, item: undefined};
 
@@ -28,5 +36,6 @@ const maxSort = function(numbers) {
   return sortedList;
 }
 
+exports.sigma = sigma;
 exports.getMaxEntry = getMaxEntry;
 exports.maxSort = maxSort;

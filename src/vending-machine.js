@@ -1,34 +1,31 @@
 const arrayUtils = require("./array-utils.js");
 const maxSort = arrayUtils.maxSort;
+const sigma = arrayUtils.sigma;
 
 const countNumberOfCoins = function(amount, denomination) {
   return Math.floor(amount / denomination);
 }
 
-const countCoinsByDenominations = function(rupees, denominations) {
+const countCoinsByDenominations = function(amount, denominations) {
+  if (amount === 0) return {};
+
   const coinsByDenomination = {};
-  let amount = rupees;
+  let remaining = amount;
 
   const denominationsInDescOrder = maxSort(denominations.slice());
 
   for(let currentDenomination of denominationsInDescOrder) {
-    coinsByDenomination[currentDenomination] = countNumberOfCoins(amount, currentDenomination);
-    amount = amount % currentDenomination;
+    coinsByDenomination[currentDenomination] = countNumberOfCoins(remaining, currentDenomination);
+    remaining = remaining % currentDenomination;
   }
 
   return coinsByDenomination;
 }
 
-const countCoins = function(rupees, denominations) {
-  const coinsByDenomination = countCoinsByDenominations(rupees, denominations);
-  const coinsList = Object.values(coinsByDenomination);
-  let coins = 0;
-
-  for(let coin of coinsList) {
-    coins += coin;
-  }
-
-  return coins;
+const countCoins = function(amount, denominations) {
+  const coinsByDenomination = countCoinsByDenominations(amount, denominations);
+  const coins = Object.values(coinsByDenomination);
+  return sigma(coins);
 }
 
 exports.countCoins = countCoins;
