@@ -6,6 +6,7 @@ const printHeadline = testing.printHeadline;
 const dispenseCoins = vendingMachine.dispenseCoins;
 const maxSort = vendingMachine.maxSort;
 const max = vendingMachine.max;
+const remove = vendingMachine.remove;
 
 const runTestForDispenseCoins = function(){
   printHeadline("runTestForDispenseCoins()");
@@ -37,6 +38,12 @@ const runTestForMax = function() {
   assert(2,max([1,2]), "max of 1,2 is 2");
 }
 
+const runTestForRemove = function() {
+  printHeadline("runTestForRemove()");
+  assertArrayEqual([1,2],remove([1,3,2] ,1),"[1,3,2] without index 1 should be [1,2]");
+  assertArrayEqual([1,2,3],remove([1,2,3,4] ,3),"[1,2,3,4] without index 3 should be [1,2,3]");
+}
+
 const runTestForDriver = function() {
   runTestForDispenseCoins();
 }
@@ -44,6 +51,7 @@ const runTestForDriver = function() {
 const runTestForHelper = function() {
   runTestForMaxSort();
   runTestForMax();
+  runTestForRemove();
 }
 
 runTestForDriver();

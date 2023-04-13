@@ -10,15 +10,21 @@ const max = function(list) {
   return max;
 }
 
+const remove = function(list, index) {
+  const leftPart = list.slice(0, index);
+  const rightPart = list.slice(index + 1, list.length);
+  return leftPart.concat(rightPart);
+}
+
 const maxSort = function(list) {
-  let copiedList = list;
+  let remainingList = list.slice();
   let sortedList = [];
 
   for(let index = 0; index < list.length; index++) {
-    let maxItem = max(copiedList);
-    let maxIndex = copiedList.indexOf(maxItem);
+    let maxItem = max(remainingList);
+    let maxIndex = remainingList.indexOf(maxItem);
     sortedList.push(maxItem);
-    copiedList = copiedList.slice(0,maxIndex).concat(copiedList.slice(maxIndex + 1, copiedList.length));
+    remainingList = remove(remainingList, maxIndex);
   }
 
   return sortedList;
@@ -38,6 +44,7 @@ const dispenseCoins = function(rupees, denominations) {
   return coins;
 }
 
+exports.remove = remove;
 exports.maxSort = maxSort;
 exports.max = max;
 exports.dispenseCoins = dispenseCoins;
