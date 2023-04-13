@@ -25,7 +25,7 @@ const maxSort = function(list) {
 }
 
 const dispenseCoins = function(rupees, denominations) {
-  const denominationsInDescOrder = maxSort(denominations);
+  const denominationsInDescOrder = maxSort(denominations.slice());
 
   let amount = rupees;
   let coins = 0;

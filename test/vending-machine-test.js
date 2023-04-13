@@ -2,11 +2,13 @@ const testing = require("../lib/testing.js");
 const vendingMachine = require("../src/vending-machine.js");
 const assert = testing.assert;
 const assertArrayEqual = testing.assertArrayEqual;
+const printHeadline = testing.printHeadline;
 const dispenseCoins = vendingMachine.dispenseCoins;
 const maxSort = vendingMachine.maxSort;
 const max = vendingMachine.max;
 
 const runTestForDispenseCoins = function(){
+  printHeadline("runTestForDispenseCoins()");
   assert(0,dispenseCoins(0,[1]),"zero coin equals to zero rupee");
   assert(1,dispenseCoins(1,[1]),"one coin of Re.1 equals to one rupee");
   assert(2,dispenseCoins(3,[1,2]),"one coin of Re.1 and one coin of Rs.2 equals to three rupees");
@@ -24,16 +26,26 @@ const runTestForDispenseCoins = function(){
 }
 
 const runTestForMaxSort = function() {
+  printHeadline("runTestForMaxSort()");
   assertArrayEqual([2,1],maxSort([1,2]),"sorted order of 1,2 is 2,1");
   assertArrayEqual([4,2,1],maxSort([4,1,2]),"sorted order of 4,1,2 is 1,2,4");
 }
 
 const runTestForMax = function() {
+  printHeadline("runTestForMax()");
   assert(3,max([1,2,3]), "max of 1,2,3 is 3");
   assert(2,max([1,2]), "max of 1,2 is 2");
 }
 
-runTestForDispenseCoins();
-runTestForMaxSort();
-runTestForMax();
+const runTestForDriver = function() {
+  runTestForDispenseCoins();
+}
+
+const runTestForHelper = function() {
+  runTestForMaxSort();
+  runTestForMax();
+}
+
+runTestForDriver();
+runTestForHelper();
 testing.showTestSummary();
