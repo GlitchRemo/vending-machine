@@ -1,19 +1,9 @@
-const determineNumberOfCoins = function(amount, denomination) {
-  return Math.floor(amount / denomination);
-}
-
 const max = function(list) {
   let max = -Infinity;
   for(item of list) {
     max = Math.max(item, max); 
   }
   return max;
-}
-
-const remove = function(list, index) {
-  const leftPart = list.slice(0, index);
-  const rightPart = list.slice(index + 1, list.length);
-  return leftPart.concat(rightPart);
 }
 
 const maxSort = function(list) {
@@ -24,41 +14,42 @@ const maxSort = function(list) {
     let maxItem = max(remainingList);
     let maxIndex = remainingList.indexOf(maxItem);
     sortedList.push(maxItem);
-    remainingList = remove(remainingList, maxIndex);
+    remainingList.splice(maxIndex, 1);
   }
 
   return sortedList;
 }
 
-const dispenseCoins = function(rupees, denominations) {
+const determineNumberOfCoins = function(amount, denomination) {
+  return Math.floor(amount / denomination);
+}
+
+const dispenseCoinsByDenominations = function(rupees, denominations) {
+  const coinsByDenomination = {};
+  let amount = rupees;
+
   const denominationsInDescOrder = maxSort(denominations.slice());
 
-  let amount = rupees;
-  let coins = 0;
   for(let currentDenomination of denominationsInDescOrder) {
-
-    coins = coins + determineNumberOfCoins(amount, currentDenomination);
+    coinsByDenomination[currentDenomination] = determineNumberOfCoins(amount, currentDenomination);
     amount = amount % currentDenomination;
+  }
+
+  return coinsByDenomination;
+}
+
+const dispenseCoins = function(rupees, denominations) {
+  const coinsByDenomination = dispenseCoinsByDenominations(rupees, denominations);
+  const coinsList = Object.values(coinsByDenomination);
+  let coins = 0;
+
+  for(coin of coinsList) {
+    coins += coin;
   }
 
   return coins;
 }
 
-const dispenseCoinsByDenominations = function(rupees, denominations) {
-  const denominationsInDescOrder = maxSort(denominations.slice());
-  const denominationsObj = {};
-
-  let amount = rupees;
-  for(let currentDenomination of denominationsInDescOrder) {
-
-    denominationsObj[currentDenomination] = determineNumberOfCoins(amount, currentDenomination);
-    amount = amount % currentDenomination;
-  }
-
-  return denominationsObj;
-}
-
-exports.remove = remove;
 exports.maxSort = maxSort;
 exports.max = max;
 exports.dispenseCoins = dispenseCoins;
