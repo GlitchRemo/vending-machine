@@ -26,16 +26,16 @@ const runTestForDispenseCoins = function(){
   assert(6,dispenseCoins(21,[1,4]),"5 coins of Rs.4 and 1 coin of Re.1 equals to twenty 1 rupees");
   assert(1,dispenseCoins(14,[13]),"if only 13 is our denomination, for an amount of Rs.14 I will get 1 coin");
   assert(0,dispenseCoins(12,[13]),"if only 13 is our denomination, for an amount of Rs.12 I will get no coin");
+  assert(4,dispenseCoins(13,[1,4,7]),"1 coin of Rs.7, 1 coin of Rs.4 and 2 coins of Re.1 is equal to thirteen rupees");
 
   printHeadline("unordered denominations");
-  assert(4,dispenseCoins(13,[1,4,7]),"1 coin of Rs.7, 1 coin of Rs.4 and 2 coins of Re.1 is equal to thirteen rupees");
   assert(4,dispenseCoins(13,[4,1,7]),"1 coin of Rs.7, 1 coin of Rs.4 and 2 coins of Re.1 is equal to thirteen rupees");
-  assert(6,dispenseCoins(23,[2,1,5]),"1 coin of Rs.7, 1 coin of Rs.4 and 2 coins of Re.1 is equal to thirteen rupees");
+  assert(6,dispenseCoins(23,[2,1,5]),"4 coins of Rs.5, 1 coin of Rs.2 and 1 coin of Re.1 is equal to twenty three rupees");
 }
 
 const runTestForDispenseCoinsByDenominations = function() {
   printHeadline("runTestForDispenseCoinsByDenominations()");
-  assertObjectEqual({2:1, 1:1},dispenseCoinsByDenominations(3,[1,2]),"1 coin of Re.1 and 1 coin of Rs.2 equals to Rs.13");
+  assertObjectEqual({2:1, 1:1},dispenseCoinsByDenominations(3,[1,2]),"1 coin of Re.1 and 1 coin of Rs.2 equals to Rs.3");
   assertObjectEqual({7:1, 4:1, 1:2},dispenseCoinsByDenominations(13,[1,4,7]),"1 coin of Rs.7, 1 of Rs.4, 2 of Re.1 is equal to Rs. 13");
 }
 
